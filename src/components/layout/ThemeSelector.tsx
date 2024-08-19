@@ -1,17 +1,18 @@
 import { Theme } from '@/types/index.types';
 import { useUI } from '@/hooks/ui';
 
+import { THEME_STORAGE_KEY } from '@/utils/constants';
+
 export const ThemeSelector: React.FC = () => {
     const { theme, setTheme } = useUI();
 
-    console.log('Current theme:', theme);
-
     const handleThemeChange = (newTheme: Theme) => {
-        localStorage.setItem('theme', newTheme);
-        console.log('Theme changed to:', newTheme);
+        localStorage.setItem(THEME_STORAGE_KEY, newTheme);
 
         setTheme(newTheme);
     };
+
+    console.log('ThemeSelector', theme);
 
     return (
         <div className="dropdown mb-72">
@@ -26,7 +27,9 @@ export const ThemeSelector: React.FC = () => {
                     <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
                 </svg>
             </div>
-            <ul tabIndex={0} className="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl">
+            <ul
+                tabIndex={0}
+                className="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl">
                 {Object.values(Theme).map((iTheme) => (
                     <li key={iTheme}>
                         <input
