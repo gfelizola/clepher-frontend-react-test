@@ -1,21 +1,15 @@
-import { Theme } from '@/types/index.types';
 import { useUI } from '@/hooks/ui';
-
-import { THEME_STORAGE_KEY } from '@/utils/constants';
+import { Theme } from '@/types/index.types';
 
 export const ThemeSelector: React.FC = () => {
     const { theme, setTheme } = useUI();
 
     const handleThemeChange = (newTheme: Theme) => {
-        localStorage.setItem(THEME_STORAGE_KEY, newTheme);
-
         setTheme(newTheme);
     };
 
-    console.log('ThemeSelector', theme);
-
     return (
-        <div className="dropdown mb-72">
+        <div className="dropdown dropdown-end md:order-last">
             <div tabIndex={0} role="button" className="btn m-1">
                 Theme
                 <svg

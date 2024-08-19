@@ -1,19 +1,21 @@
-import { useEffect } from 'react';
+import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
-import ThemeContext from './contexts/ThemeContext';
-import { useUI } from './hooks/ui';
-import { Theme } from './types/index.types';
-import { THEME_STORAGE_KEY } from './utils/constants';
+import { ThemeProvider } from './hooks/ui';
+import { Home } from './pages/Home';
 
 function App() {
-    const { theme, setTheme } = useUI();
-
     return (
-        <ThemeContext.Provider value={{ theme, setTheme }}>
-            <div className="app-container h-screen w-screen">
+        <ThemeProvider>
+            <div className="app-container h-screen">
                 <Header />
+
+                <main className="p-8 min-h-96">
+                    <Home />
+                </main>
+
+                <Footer />
             </div>
-        </ThemeContext.Provider>
+        </ThemeProvider>
     );
 }
 
