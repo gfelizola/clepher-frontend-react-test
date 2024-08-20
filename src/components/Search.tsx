@@ -7,7 +7,6 @@ const SearchResultItem = ({ symbol, name }: { symbol: string; name: string }) =>
     const { setActualStock } = useStock();
 
     const handleClick = () => {
-        console.log('clicked', symbol);
         setActualStock(symbol);
     };
 
@@ -51,7 +50,7 @@ const SearchInput = ({ onSearch }: SearchInputProps) => {
     return (
         <label tabIndex={1} role="button" className="form-control w-full">
             <div className="label">
-                <span className="label-text">What company you are looking?</span>
+                <span className="label-text">What company you are looking for?</span>
             </div>
             <div className="input input-bordered input-lg flex items-center gap-2 focus:ring-8 focus:ring-primary">
                 <input

@@ -80,7 +80,7 @@ export const MainStockChart = () => {
         queryFn: async () => fetchTimeSeries(actualStock),
     });
 
-    if (!data || isLoading) return <div className="skeleton w-full h-full"></div>;
+    if (!data || isLoading) return <div className="skeleton w-full h-20"></div>;
 
     const series: ApexAxisChartSeries = formatSeries(data);
 

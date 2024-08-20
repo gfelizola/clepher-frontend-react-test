@@ -1,28 +1,36 @@
-import { fetchStockDetails } from '@/api/stock-api';
+import { fetchGlobalQuote, fetchStockDetails } from '@/api/stock-api';
 import { useStock } from '@/hooks/stock';
+import { GlobalQuote } from '@/types/index.types';
 import { useQuery } from '@tanstack/react-query';
-import clsx from 'clsx';
 
 export const StockDetails = () => {
     const { actualStock } = useStock();
 
-    const { data, isFetching } = useQuery({
+    const { data: stockDetailData, isLoading: isDetailLoading } = useQuery({
         queryKey: ['stock-details', actualStock],
         queryFn: () => fetchStockDetails('IBM'),
     });
 
+    const { data: stockLastPrice, isLoading: isPriceLoading } = useQuery({
+        queryKey: ['stock-last-price', actualStock],
+        queryFn: () => fetchGlobalQuote('IBM'),
+    });
+
+    const currentQuote: GlobalQuote | undefined = stockLastPrice?.['Global Quote'];
+
+    if (isDetailLoading || isPriceLoading)
+        return <div className="card skeleton h-20 rounded-md"></div>;
+
     return (
-        <div className={clsx('stock-details card', isFetching && 'skeleton')}>
-            <div className="card-body">
-                <h2 className="card-title">Stock Details</h2>
-                <h3 className="text-primary font-bold text-2xl">{data?.Symbol}</h3>
-                <p>{data?.Name}</p>
-                <p>
-                    <span className="text-primary">Last price</span>
-                    <span> $123.45</span>
-                    <span className="text-sm">(-0.18%)</span>
-                </p>
-            </div>
+        <div className="stock-details card">
+            <h2 className="card-title mb-4">Stock Details</h2>
+            <h3 className="text-primary font-bold text-2xl">{stockDetailData?.Symbol}</h3>
+            <p>{stockDetailData?.Name}</p>
+            <p className="gap-4">
+                <span className="text-primary mr-4">Last price</span>
+                <span className="text-lg mr-2">$ {currentQuote?.['05. price']}</span>
+                <span className="text-sm">({currentQuote?.['10. change percent']})</span>
+            </p>
         </div>
     );
 };

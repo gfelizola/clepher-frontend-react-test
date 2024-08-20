@@ -81,3 +81,4 @@ export interface TimeSeriesDailyData {
     "5. volume": string
     [key: string]: string
 }
+

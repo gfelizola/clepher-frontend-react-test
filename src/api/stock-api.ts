@@ -1,4 +1,4 @@
-import { IStockDetails, SearchResult, TimeSeriesDailyResponse } from "@/types/index.types";
+import { GlobalQuoteResponse, IStockDetails, SearchResult, TimeSeriesDailyResponse } from "@/types/index.types";
 import { requestClient } from "@/utils/request-client";
 
 type ParamsType = 
@@ -27,7 +27,7 @@ export const featchSymbolSearch = async (search: string) => {
 };
 
 export const fetchGlobalQuote = async (symbol: string) => {
-    return apiCall<SearchResult>({
+    return apiCall<GlobalQuoteResponse>({
         function: "GLOBAL_QUOTE",
         symbol
     })

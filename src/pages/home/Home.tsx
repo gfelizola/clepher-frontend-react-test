@@ -23,7 +23,7 @@ export const Home = () => {
                     <MainStockChart />
                 </div>
 
-                <div className="col-span-3 md:col-span-1 border border-primary shadow-md rounded-md w-full">
+                <div className="col-span-3 md:col-span-1 border border-primary shadow-md rounded-md w-full p-4">
                     <StockDetails />
                 </div>
             </div>
