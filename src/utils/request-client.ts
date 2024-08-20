@@ -4,6 +4,7 @@ import MockAdapter from "axios-mock-adapter";
 import globalQuote from '@/api/mocks/global-quote.json';
 import overview from '@/api/mocks/overview.json';
 import symbolSearch from '@/api/mocks/symbol-search.json';
+import timeSeriesDaily from '@/api/mocks/time-series.json';
 
 export const requestClient = axios.create({
   baseURL: import.meta.env.VITE_ALPHA_API_URL,
@@ -31,10 +32,10 @@ mock.onGet("/query")
       case "SYMBOL_SEARCH":
         response = symbolSearch;
         break;
+      case "TIME_SERIES_DAILY":
+        response = timeSeriesDaily;
+        break;
     }
-
-    console.log(config.params.function, response);
-    
 
     return [200, { ...response }];
   })

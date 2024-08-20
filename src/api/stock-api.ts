@@ -1,4 +1,4 @@
-import { IStockDetails, SearchResult } from "@/types/index.types";
+import { IStockDetails, SearchResult, TimeSeriesDailyResponse } from "@/types/index.types";
 import { requestClient } from "@/utils/request-client";
 
 type ParamsType = 
@@ -34,7 +34,7 @@ export const fetchGlobalQuote = async (symbol: string) => {
 };
 
 export const fetchTimeSeries = async (symbol: string) => {
-    return apiCall({
+    return apiCall<TimeSeriesDailyResponse>({
         function: "TIME_SERIES_DAILY",
         symbol
     })

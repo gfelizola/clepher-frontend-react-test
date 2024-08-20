@@ -55,3 +55,29 @@ export interface GlobalQuote {
     "09. change": string
     "10. change percent": string
 }
+
+export interface TimeSeriesDailyResponse {
+    "Meta Data": MetaData
+    "Time Series (Daily)": TimeSeriesDaily
+}
+
+export interface MetaData {
+    "1. Information": string
+    "2. Symbol": string
+    "3. Last Refreshed": string
+    "4. Output Size": string
+    "5. Time Zone": string
+}
+
+export interface TimeSeriesDaily {
+    [key: string]: TimeSeriesDailyData
+}
+
+export interface TimeSeriesDailyData {
+    "1. open": string
+    "2. high": string
+    "3. low": string
+    "4. close": string
+    "5. volume": string
+    [key: string]: string
+}
