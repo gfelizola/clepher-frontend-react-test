@@ -1,4 +1,4 @@
-import globals from "globals";
+import globals, { jest } from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
@@ -13,7 +13,11 @@ export default [
   {
     rules: {
       "react/react-in-jsx-scope": "off",
+    },
+    env: {
+      jest: true,
     }
   },
+  
   eslintConfigPrettier
 ];

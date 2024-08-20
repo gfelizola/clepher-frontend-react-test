@@ -1,13 +1,13 @@
 import { GlobalQuoteResponse, IStockDetails, SearchResult, TimeSeriesDailyResponse } from "@/types/index.types";
 import { requestClient } from "@/utils/request-client";
 
-type ParamsType = 
+export type ParamsType =  
 | { function: "OVERVIEW", symbol: string }
 | { function: "SYMBOL_SEARCH", keywords: string }
 | { function: "GLOBAL_QUOTE", symbol: string }
 | { function: "TIME_SERIES_DAILY", symbol: string }
 
-const apiCall = async <T>(params: ParamsType): Promise<T> => {
+export const apiCall = async <T>(params: ParamsType): Promise<T> => {
     const response = await requestClient({ method: "GET", url: '/query', params });
     return response.data;
 }
