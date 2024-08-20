@@ -8,12 +8,12 @@ export const StockDetails = () => {
 
     const { data: stockDetailData, isLoading: isDetailLoading } = useQuery({
         queryKey: ['stock-details', actualStock],
-        queryFn: () => fetchStockDetails('IBM'),
+        queryFn: () => fetchStockDetails(actualStock),
     });
 
     const { data: stockLastPrice, isLoading: isPriceLoading } = useQuery({
         queryKey: ['stock-last-price', actualStock],
-        queryFn: () => fetchGlobalQuote('IBM'),
+        queryFn: () => fetchGlobalQuote(actualStock),
     });
 
     const currentQuote: GlobalQuote | undefined = stockLastPrice?.['Global Quote'];
