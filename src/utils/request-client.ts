@@ -17,25 +17,27 @@ export const requestClient = axios.create({
 });
 
 // config mocks for development usage
-const mock = new MockAdapter(requestClient, { delayResponse: 2000 });
-mock.onGet("/query")
-  .reply((config) => {
-    let response = {};
+if( import.meta.env.VITE_ALPHA_API_USE_MOCK === "true" ) {
+  const mock = new MockAdapter(requestClient, { delayResponse: 2000 });
+  mock.onGet("/query")
+    .reply((config) => {
+      let response = {};
 
-    switch( config.params.function ) {
-      case "GLOBAL_QUOTE":
-        response = globalQuote;
-        break;
-      case "OVERVIEW":
-        response = overview;
-        break;
-      case "SYMBOL_SEARCH":
-        response = symbolSearch;
-        break;
-      case "TIME_SERIES_DAILY":
-        response = timeSeriesDaily;
-        break;
-    }
+      switch( config.params.function ) {
+        case "GLOBAL_QUOTE":
+          response = globalQuote;
+          break;
+        case "OVERVIEW":
+          response = overview;
+          break;
+        case "SYMBOL_SEARCH":
+          response = symbolSearch;
+          break;
+        case "TIME_SERIES_DAILY":
+          response = timeSeriesDaily;
+          break;
+      }
 
-    return [200, { ...response }];
-  })
+      return [200, { ...response }];
+    })
+  }
