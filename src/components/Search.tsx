@@ -1,7 +1,7 @@
 import { featchSymbolSearch } from '@/api/stock-api';
 import { useStock } from '@/hooks/stock';
-import { BestMatch } from '@/types/index.types';
-import { ChangeEvent, useEffect, useState } from 'react';
+import type { BestMatch } from '@/types/index.types';
+import { type ChangeEvent, useEffect, useState } from 'react';
 
 const SearchResultItem = ({ symbol, name }: { symbol: string; name: string }) => {
     const { setActualStock } = useStock();
@@ -18,12 +18,24 @@ const SearchResultItem = ({ symbol, name }: { symbol: string; name: string }) =>
     );
 };
 
+const EmptySearchResults = () => {
+    return (
+        <div className="dropdown-content bg-base-300 rounded-box z-[1] w-full p-2 shadow-xl">
+            <ul>
+                <li className="btn btn-lg btn-block btn-ghost h-auto justify-between">
+                    <span className="text-primary">No results found</span>
+                </li>
+            </ul>
+        </div>
+    );
+};
+
 interface SearchResultsProps {
     items: BestMatch[];
 }
 
 const SearchResultsContainer = ({ items }: SearchResultsProps) => {
-    if (!items?.length) return null;
+    if (!items?.length) return <EmptySearchResults />;
 
     return (
         <div
@@ -60,6 +72,7 @@ const SearchInput = ({ onSearch }: SearchInputProps) => {
                     placeholder="Input the company name"
                     className="grow"
                     onChange={onSearch}
+                    autoComplete="off"
                 />
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

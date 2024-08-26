@@ -8,8 +8,8 @@ This project is a test for Clepher Frontend Developer position.
 - Install the dependencies by running `npm install`
 - Create a `.env` file in the root of the project and add the following environment variables:
   - `VITE_ALPHA_API_KEY` - Your API key from [Alphavantage](https://www.alphavantage.co/support/#api-key)
-  - `VITE_ALPHA_API_URL` - The URL to the Alphavantage API. (https://www.alphavantage.co)
-  - 'VITE_ALPHA_API_USE_MOCK` - Set to `true` to use the mocked data or `false` to use the Alphavantage API.
+  - `VITE_ALPHA_API_URL` - The URL to the Alphavantage API. [https://www.alphavantage.co](https://www.alphavantage.co)
+  - `VITE_ALPHA_API_USE_MOCK` - Set to `true` to use the mocked data or `false` to use the Alphavantage API.
 
 - To start the project, run `npm run dev`
 - To run the tests, run `npm run test`
@@ -41,3 +41,7 @@ This project is a test for Clepher Frontend Developer position.
 - [React Query](https://react-query.tanstack.com/)
 - [Axios](https://axios-http.com/)
 - [ApexCharts](https://apexcharts.com/)
+
+## Demo
+
+This project will be available at [Live Link](https://clepher-9d4f0.web.app/) until the end of the test and process.
